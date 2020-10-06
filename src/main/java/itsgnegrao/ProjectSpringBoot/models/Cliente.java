@@ -1,11 +1,17 @@
 package itsgnegrao.ProjectSpringBoot.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.Nullable;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 @Entity
 @Data
@@ -18,15 +24,21 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @NotEmpty
     private String cpf;
 
+    @NotNull
+    @NotEmpty
     private String nome;
+
+    @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date data_nasc;
 
     private String email;
 
     private char sexo;
-
-    private Date data_nasc;
 
     private String naturalidade;
 

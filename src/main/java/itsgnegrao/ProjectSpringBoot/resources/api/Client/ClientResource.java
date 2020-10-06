@@ -1,5 +1,6 @@
 package itsgnegrao.ProjectSpringBoot.resources.api.Client;
 
+import itsgnegrao.ProjectSpringBoot.Utils.*;
 import itsgnegrao.ProjectSpringBoot.models.Cliente;
 import com.google.gson.Gson;
 import itsgnegrao.ProjectSpringBoot.service.Client.ClientService;
@@ -10,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import itsgnegrao.ProjectSpringBoot.resources.api.ResponseBody;
 
+import javax.validation.Valid;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
@@ -39,8 +42,13 @@ public class ClientResource {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity novo(@RequestBody Cliente client) {
-        System.out.println("\n\nVALIDA CAMPOS AQUII!!\n\n");
+    public ResponseEntity novo(@RequestBody @Valid Cliente client) {
+//        Validação de Campos
+        ArrayList<String> resp = validateClienteFields(client);
+        if(!resp.isEmpty()){
+            return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(false, "Fail", resp)));
+        }
+
         client.setData_alt(new Timestamp(new Date().getTime()));
         client.setData_cad(new Timestamp(new Date().getTime()));
         try{
@@ -50,7 +58,6 @@ public class ClientResource {
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(false, "Fail")));
         }
-
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -73,17 +80,21 @@ public class ClientResource {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson(new ResponseBody(false, "Cliente Não Encontrado")));
         }
 
+        // Validação de Campos
+        ArrayList<String> resp = validateClienteFields(client);
+        if(!resp.isEmpty()){
+            return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(false, "Fail", resp)));
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.findById(id)
                 .map(record -> {
                     if(record.getCpf() != client.getCpf()){
-                        System.out.println("\n\nVALIDA CAMPOS AQUII!!\n\n");
                         client.setData_alt(new Timestamp(new Date().getTime()));
                         client.setData_cad(record.getData_cad());
                         clienteService.deleteById(id);
                         Cliente cliente = clienteService.save(client);
                     }
                     else{
-                        System.out.println("\n\nVALIDA CAMPOS AQUII!!\n\n");
                         record.setEmail(client.getEmail());
                         record.setNome(client.getNome());
                         record.setSexo(client.getSexo());
@@ -97,4 +108,21 @@ public class ClientResource {
                 }).orElse(new ResponseBody(false, "Fail")));
 
     }
+
+    private ArrayList<String> validateClienteFields(Cliente client) {
+        ArrayList<String> arr = new ArrayList<>();
+
+        if(!CpfCnpjUtils.isValid(client.getCpf())){
+            arr.add("CPF Inválido, digite um CPF Válido!");
+        }
+        if(!DataUtils.isValid(client.getData_nasc())){
+            arr.add("Data de Nascimento Inválida, digite uma Data Válida!");
+        }
+        if(!EmailUtils.isValid(client.getEmail())){
+            arr.add("Email Inválido, digite um Email Válido!");
+        }
+
+        return arr;
+    }
+
 }

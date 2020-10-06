@@ -4,11 +4,11 @@ CREATE TABLE Client (
   id BIGINT AUTO_INCREMENT,
   cpf VARCHAR(15) PRIMARY KEY,
   nome VARCHAR(250) NOT NULL,
-  email VARCHAR(250) NOT NULL,
-  sexo VARCHAR(1) NOT NULL,
+  email VARCHAR(50),
+  sexo VARCHAR(1),
   data_nasc DATE NOT NULL,
-  naturalidade VARCHAR(250) NOT NULL,
-  nacionalidade VARCHAR(250) NOT NULL,
+  naturalidade VARCHAR(100),
+  nacionalidade VARCHAR(100),
   data_cad TIMESTAMP NOT NULL,
   data_alt TIMESTAMP NOT NULL
 );
