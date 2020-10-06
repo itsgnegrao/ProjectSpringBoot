@@ -1,4 +1,4 @@
-package itsgnegrao.ProjectSpringBoot.repository;
+package itsgnegrao.ProjectSpringBoot.repository.Client;
 
 import itsgnegrao.ProjectSpringBoot.models.Cliente;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -10,6 +10,7 @@ import java.util.List;
 public interface ClienteRepository extends PagingAndSortingRepository<Cliente, Long> {
 
     List<Cliente> findAll();
+
 //
 //    /**
 //     * Método que retorna uma lista de clientes fazendo a busca pelo nome

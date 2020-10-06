@@ -1,17 +1,23 @@
 package itsgnegrao.ProjectSpringBoot.models;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="Client")
-public class Cliente {
+public class Cliente implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String cpf;
 
     private String nome;
@@ -30,19 +36,12 @@ public class Cliente {
 
     private Timestamp data_alt;
 
-    public Cliente(String cpf, String nome, String email, char sexo, Date data_nasc, String naturalidade, String nacionalidade, Timestamp data_cad, Timestamp data_alt) {
-        this.cpf = cpf;
-        this.nome = nome;
-        this.email = email;
-        this.sexo = sexo;
-        this.data_nasc = data_nasc;
-        this.naturalidade = naturalidade;
-        this.nacionalidade = nacionalidade;
-        this.data_cad = data_cad;
-        this.data_alt = data_alt;
+    public Long getId() {
+        return id;
     }
 
-    public Cliente() {
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCpf() {
