@@ -11,7 +11,9 @@ public class SourceResource {
 
     @GetMapping(produces = MediaType.TEXT_HTML_VALUE)
     public String source() {
-        return "<a href=\"https://github.com/itsgnegrao/ProjectSpringBoot\"> Link do Projeto no Github. <a>";
+        return "<a href=\"https://github.com/itsgnegrao/ProjectSpringBoot\"> Link do Projeto Back-End Java Spring Boot no Github. <a> " +
+                " <br/>" +
+                "<a href=\"https://github.com/itsgnegrao/ProjectReact\"> Link do Projeto Front-End ReactJs no Github. <a> ";
     }
 
 }
