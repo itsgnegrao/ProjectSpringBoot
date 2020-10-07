@@ -15,4 +15,9 @@ CREATE TABLE Client (
 
 INSERT INTO Client (cpf, nome, email, sexo, data_nasc, naturalidade, nacionalidade, data_cad, data_alt) VALUES
   ('08474392918', 'Testerson Da Silva Teste', 'itsg_negrao@hotmail.com', 'M', '1996-10-15', 'Campo Mourão - Paraná', 'Brasil', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+  ('08474392912', 'Testerson Da Silva Teste', 'itsg_negrao@hotmail.com', 'M', '1996-10-15', 'Campo Mourão - Paraná', 'Brasil', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+  ('08474392913', 'Testerson Da Silva Teste', 'itsg_negrao@hotmail.com', 'M', '1996-10-15', 'Campo Mourão - Paraná', 'Brasil', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+  ('08474392914', 'Testerson Da Silva Teste', 'itsg_negrao@hotmail.com', 'M', '1996-10-15', 'Campo Mourão - Paraná', 'Brasil', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+  ('8474392914', 'Testerson Da Silva Teste', 'itsg_negrao@hotmail.com', 'M', '1996-10-15', 'Campo Mourão - Paraná', 'Brasil', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+  ('084743924', 'Testerson Da Silva Teste', 'itsg_negrao@hotmail.com', 'M', '1996-10-15', 'Campo Mourão - Paraná', 'Brasil', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
   ('27106543004', 'Testelvina Da Silva Teste', 'itsgabriela@hotmail.com', 'F', '1996-10-16', 'Campo Mourão - Paraná', 'Brasil', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());

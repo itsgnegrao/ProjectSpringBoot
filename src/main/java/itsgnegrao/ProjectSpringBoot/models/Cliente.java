@@ -1,23 +1,20 @@
 package itsgnegrao.ProjectSpringBoot.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.Nullable;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Client")
+@Table(name = "Client")
 public class Cliente implements Serializable {
 
     @Id

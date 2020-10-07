@@ -1,6 +1,5 @@
 package itsgnegrao.ProjectSpringBoot.resources.api;
 
-
 import lombok.Data;
 
 import java.io.Serializable;

@@ -1,13 +1,7 @@
 package itsgnegrao.ProjectSpringBoot.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.io.Serializable;
 
-@Getter
-@Setter
 public class Token implements Serializable {
 
     private String email;
@@ -21,5 +15,40 @@ public class Token implements Serializable {
     public Token(String email, String token) {
         this.email = email;
         this.token = token;
+    }
+
+    public Token() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Boolean getAuth() {
+        return auth;
+    }
+
+    public void setAuth(Boolean auth) {
+        this.auth = auth;
+    }
+
+    public Integer getExpires() {
+        return expires;
+    }
+
+    public void setExpires(Integer expires) {
+        this.expires = expires;
     }
 }

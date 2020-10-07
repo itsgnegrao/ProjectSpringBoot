@@ -1,0 +1,66 @@
+package itsgnegrao.ProjectSpringBoot.resources.api;
+
+import itsgnegrao.ProjectSpringBoot.models.Cliente;
+import com.google.gson.Gson;
+import itsgnegrao.ProjectSpringBoot.models.ConsultaBody;
+import itsgnegrao.ProjectSpringBoot.service.Client.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
+@RestController
+@RequestMapping("/api/client")
+public class ClientResource {
+
+    @Autowired
+    ClientService clienteService;
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping(path = {"/get"}, produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ApiOperation(value = "Consulta o cadastro do Cliente permitindo passar filtros e paginação", response = List.class)
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "Retorno padrão, nele virá uma lista com os Clientes, total de itens no retorno e total de itens geral", response = CadCliente.class),
+//            @ApiResponse(code = 500, message = "Erro inesperado no VipTechServices! ")
+//    })
+    public ResponseEntity buscar(@RequestBody ConsultaBody consultaBody) {
+        return clienteService.buscar(consultaBody);
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path = {"/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity retornaCliente(@PathVariable Long id) {
+        return clienteService.findById(id);
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity novo(@RequestBody @Valid Cliente client) {
+        return clienteService.novo(client);
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping(path = {"/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
+        return clienteService.deletar(id);
+    }
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping(path = {"/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> put(@PathVariable Long id, @RequestBody Cliente client) {
+        return clienteService.atualizar(id, client);
+    }
+
+}

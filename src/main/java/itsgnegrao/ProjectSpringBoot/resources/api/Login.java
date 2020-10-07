@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.nio.charset.Charset;
 
@@ -18,11 +19,13 @@ public class Login {
     @Autowired
     private Gson gson;
 
-    @RequestMapping( produces = {MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST)
-    public ResponseEntity<String> login(@RequestBody User user) {
+//    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity login(@RequestBody User user) {
         String auth = user.getUsername() + ":" + user.getPassword();
-        byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")) );
-        String tk = "Basic " + new String( encodedAuth );
+        byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
+        String tk = "Basic " + new String(encodedAuth);
         return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new Token(user.getUsername(), tk)));
     }
 
