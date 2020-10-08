@@ -130,10 +130,10 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<image>
-						<name>itsgnegrao/itsgnegrao-spring-boot:latest</name>
-					</image>
-					<layout>LAYERED_JAR</layout>
+<!--					<image>-->
+<!--						<name>itsgnegrao/itsgnegrao-spring-boot:latest</name>-->
+<!--					</image>-->
+<!--					<layout>LAYERED_JAR</layout>-->
 					<mainClass>itsgnegrao.ProjectSpringBoot.ProjectSpringBootApplication</mainClass>
 				</configuration>
 			</plugin>
