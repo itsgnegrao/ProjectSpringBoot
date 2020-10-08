@@ -1,5 +1,4 @@
 FROM openjdk:15 as builder
-RUN mkdir /application
 WORKDIR application
 COPY ./pom.xml ./pom.xml
 COPY mvnw .
@@ -9,9 +8,9 @@ RUN ["chmod", "+x", "mvnw"]
 RUN ./mvnw dependency:go-offline -B
 RUN ./mvnw clean package
 COPY target/*.jar app.jar
-RUN java -Djarmode=layertools -jar app.jar list
+RUN java -Djarmode=layertools -jar app.jar extract
 #ENTRYPOINT ["java","-jar", app.jar]
-FROM openjdk:15-jre-slim
+FROM openjdk:15
 WORKDIR application
 COPY --from=builder application/dependencies/ ./
 COPY --from=builder application/spring-boot-loader/ ./
