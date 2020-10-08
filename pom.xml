@@ -133,10 +133,9 @@
 					<layers>
 						<enabled>true</enabled>
 					</layers>
-<!--					<image>-->
-<!--						<name>itsgnegrao/itsgnegrao-spring-boot:latest</name>-->
-<!--					</image>-->
-<!--					<layout>LAYERED_JAR</layout>-->
+					<image>
+						<name>itsgnegrao/itsgnegrao-spring-boot:latest</name>
+					</image>
 					<mainClass>itsgnegrao.ProjectSpringBoot.ProjectSpringBootApplication</mainClass>
 				</configuration>
 			</plugin>
