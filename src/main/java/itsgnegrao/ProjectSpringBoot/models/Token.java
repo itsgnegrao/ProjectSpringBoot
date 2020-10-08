@@ -10,7 +10,7 @@ public class Token implements Serializable {
 
     private Boolean  auth = true;
 
-    private Integer expires = 60;
+    private Integer expires = 600; //10 minutos
 
     public Token(String email, String token) {
         this.email = email;

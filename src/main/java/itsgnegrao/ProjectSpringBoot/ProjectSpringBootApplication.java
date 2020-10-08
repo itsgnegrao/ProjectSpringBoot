@@ -10,6 +10,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import static itsgnegrao.ProjectSpringBoot.configs.ConfigsFrontEnd.API_URL;
+import static itsgnegrao.ProjectSpringBoot.configs.ConfigsFrontEnd.API_URL_LOCAL;
+
 @SpringBootApplication
 @EnableScheduling
 @EnableCaching
@@ -25,7 +28,7 @@ public class ProjectSpringBootApplication extends SpringBootServletInitializer {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+                registry.addMapping("/**").allowedOrigins(API_URL_LOCAL, API_URL);
             }
         };
     }

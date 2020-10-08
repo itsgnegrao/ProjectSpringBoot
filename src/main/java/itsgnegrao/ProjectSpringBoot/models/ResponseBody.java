@@ -1,4 +1,4 @@
-package itsgnegrao.ProjectSpringBoot.resources.api;
+package itsgnegrao.ProjectSpringBoot.models;
 
 import lombok.Data;
 

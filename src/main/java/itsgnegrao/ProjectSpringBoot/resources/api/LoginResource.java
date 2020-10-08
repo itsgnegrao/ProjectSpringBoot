@@ -9,17 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.ResponseBody;
+import static itsgnegrao.ProjectSpringBoot.configs.ConfigsFrontEnd.API_URL;
+import static itsgnegrao.ProjectSpringBoot.configs.ConfigsFrontEnd.API_URL_LOCAL;
 
 import java.nio.charset.Charset;
 
 @RestController
 @RequestMapping("/api/login")
-public class Login {
+public class LoginResource {
+
     @Autowired
     private Gson gson;
 
-//    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {API_URL, API_URL_LOCAL})
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity login(@RequestBody User user) {
