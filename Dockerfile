@@ -7,8 +7,8 @@ COPY ./src ./src
 RUN ["chmod", "+x", "mvnw"]
 RUN ./mvnw dependency:go-offline -B
 RUN ./mvnw clean package
-RUN ["ls"]
-COPY application/target/*.jar app.jar
+WORKDIR application
+COPY target/*.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 #ENTRYPOINT ["java","-jar", app.jar]
 FROM openjdk:15
