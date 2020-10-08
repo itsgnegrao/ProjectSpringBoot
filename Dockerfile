@@ -8,7 +8,7 @@ RUN ["chmod", "+x", "mvnw"]
 RUN ./mvnw dependency:go-offline -B
 RUN ./mvnw clean package
 COPY target/*.jar app.jar
-RUN java -Djarmode=layertools -jar app.jar extract
+RUN java -Djarmode=layertools -jar app.jar
 #ENTRYPOINT ["java","-jar", app.jar]
 FROM openjdk:15-jre-slim
 WORKDIR application
