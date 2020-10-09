@@ -29,6 +29,10 @@ public class ProjectSpringBootApplication extends SpringBootServletInitializer {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins(API_URL_LOCAL, API_URL);
+                registry.addMapping("/api/**").allowedOrigins(API_URL_LOCAL, API_URL);
+                registry.addMapping("/source").allowedOrigins(API_URL_LOCAL, API_URL);
+                registry.addMapping("/api/client").allowedOrigins(API_URL_LOCAL, API_URL);
+                registry.addMapping("/api/client/**").allowedOrigins(API_URL_LOCAL, API_URL);
             }
         };
     }
