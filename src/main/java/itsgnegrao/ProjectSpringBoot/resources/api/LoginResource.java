@@ -9,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import static itsgnegrao.ProjectSpringBoot.configs.ConfigsFrontEnd.API_URL;
-import static itsgnegrao.ProjectSpringBoot.configs.ConfigsFrontEnd.API_URL_LOCAL;
 
 import java.nio.charset.Charset;
 

@@ -20,7 +20,7 @@ public class ClientResource {
     @Autowired
     ClientService clienteService;
 
-    @CrossOrigin(origins = {API_URL, API_URL_LOCAL})
+    @CrossOrigin(origins = "*")
     @ResponseStatus(HttpStatus.OK)
     @PostMapping(path = {"/get"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity buscar(@RequestBody ConsultaBody consultaBody) {
@@ -28,7 +28,7 @@ public class ClientResource {
     }
 
 
-    @CrossOrigin(origins = {API_URL, API_URL_LOCAL})
+    @CrossOrigin(origins = "*")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = {"/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity retornaCliente(@PathVariable Long id) {
@@ -36,7 +36,7 @@ public class ClientResource {
     }
 
 
-    @CrossOrigin(origins = {API_URL, API_URL_LOCAL})
+    @CrossOrigin(origins = "*")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity novo(@RequestBody @Valid Client client) {
@@ -44,7 +44,7 @@ public class ClientResource {
     }
 
 
-    @CrossOrigin(origins = {API_URL, API_URL_LOCAL})
+    @CrossOrigin(origins = "*")
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(path = {"/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deletar(@PathVariable Long id) {
@@ -52,7 +52,7 @@ public class ClientResource {
     }
 
 
-    @CrossOrigin(origins = {API_URL, API_URL_LOCAL})
+    @CrossOrigin(origins = "*")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(path = {"/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> put(@PathVariable Long id, @RequestBody Client client) {

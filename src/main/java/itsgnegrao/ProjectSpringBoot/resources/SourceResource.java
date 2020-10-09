@@ -12,7 +12,7 @@ import static itsgnegrao.ProjectSpringBoot.configs.ConfigsFrontEnd.API_URL_LOCAL
 @RequestMapping("/source")
 public class SourceResource {
 
-    @CrossOrigin(origins = {API_URL, API_URL_LOCAL})
+    @CrossOrigin(origins = "*")
     @GetMapping(produces = MediaType.TEXT_HTML_VALUE)
     public String source() {
         return "<a href=\"https://github.com/itsgnegrao/ProjectSpringBoot\"> 1. Link do Projeto Back-End Java Spring Boot no Github. <a> " +
