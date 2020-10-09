@@ -19,7 +19,7 @@ public class SourceResource {
                 " <br/><br/>" +
                 "<a href=\"https://github.com/itsgnegrao/ProjectReact\"> 2. Link do Projeto Front-End ReactJs no Github. <a> " +
                 " <br/><br/>" +
-                "<a href=\"https://hub.docker.com/r/itsgnegrao/project-spring-boot\"> 3. Link do Projeto Front-End ReactJs no Docker Hub. <a> "+
+                "<a href=\"https://hub.docker.com/r/itsgnegrao/itsgnegrao-spring-boot\"> 3. Link do Projeto Front-End ReactJs no Docker Hub. <a> "+
                 " <br/><br/>" +
                 "<a href=\"https://hub.docker.com/repository/docker/itsgnegrao/itsgnegrao-react-app\"> 4. Link do Projeto Front-End ReactJs no Docker Hub. <a> " +
                 " <br/><br/>" +
