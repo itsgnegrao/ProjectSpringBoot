@@ -32,6 +32,19 @@ public class ClientResourceTests {
     }
 
 
+    //  Retorna Cliente
+    @Test
+    public void retornaCliente_deveRetornarOK() throws Exception {
+        given().contentType(ContentType.JSON).accept(ContentType.JSON).when().get ("/api/client/1").then().statusCode(HttpStatus.OK.value());
+    }
+
+
+    @Test
+    public void retornaCliente_deveRetornarMethodNotAllowed() throws Exception {
+        given().contentType(ContentType.JSON).accept(ContentType.JSON).when().get ("/api/client").then().statusCode(HttpStatus.METHOD_NOT_ALLOWED.value());
+    }
+
+
 //  Buscar
     @Test
     public void buscar_deveRetornarBadRequest() throws Exception {
@@ -45,27 +58,10 @@ public class ClientResourceTests {
     }
 
 
-//  Retorna Cliente
-    @Test
-    public void retornaCliente_deveRetornarOK() throws Exception {
-        given().contentType(ContentType.JSON).accept(ContentType.JSON).when().get ("/api/client/1").then().statusCode(HttpStatus.OK.value());
-    }
-
-    @Test
-    public void retornaCliente_deveRetornarNotFound() throws Exception {
-        given().contentType(ContentType.JSON).accept(ContentType.JSON).when().get ("/api/client/2").then().statusCode(HttpStatus.NOT_FOUND.value());
-    }
-
-    @Test
-    public void retornaCliente_deveRetornarMethodNotAllowed() throws Exception {
-        given().contentType(ContentType.JSON).accept(ContentType.JSON).when().get ("/api/client").then().statusCode(HttpStatus.METHOD_NOT_ALLOWED.value());
-    }
-
-
 //  Deletar
     @Test
     public void deletar_deveRetornarOk() throws Exception {
-        given().accept(ContentType.JSON).when().delete ("/api/client/1").then().statusCode(HttpStatus.OK.value());
+        given().accept(ContentType.JSON).when().delete ("/api/client/1").then().statusCode(HttpStatus.ACCEPTED.value());
     }
 
     @Test

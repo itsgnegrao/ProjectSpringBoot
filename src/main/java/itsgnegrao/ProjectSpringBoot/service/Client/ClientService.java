@@ -29,7 +29,7 @@ public class ClientService {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseBody(true, "Success", cliente.get()));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson(new ResponseBody(false, "Fail", "Cliente Não Encontrado")));
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(gson.toJson(new ResponseBody(false, "Fail", "Cliente Não Encontrado")));
         }
     }
 
@@ -74,7 +74,7 @@ public class ClientService {
             return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(true, "Success")));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson(new ResponseBody(false, "Fail")));
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(gson.toJson(new ResponseBody(false, "Fail")));
         }
     }
 
