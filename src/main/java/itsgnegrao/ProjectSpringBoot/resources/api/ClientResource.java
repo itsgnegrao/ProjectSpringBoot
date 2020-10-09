@@ -23,11 +23,6 @@ public class ClientResource {
     @CrossOrigin(origins = {API_URL, API_URL_LOCAL})
     @ResponseStatus(HttpStatus.OK)
     @PostMapping(path = {"/get"}, produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ApiOperation(value = "Consulta o cadastro do Cliente permitindo passar filtros e paginação", response = List.class)
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200, message = "Retorno padrão, nele virá uma lista com os Clientes, total de itens no retorno e total de itens geral", response = CadCliente.class),
-//            @ApiResponse(code = 500, message = "Erro inesperado no VipTechServices! ")
-//    })
     public ResponseEntity buscar(@RequestBody ConsultaBody consultaBody) {
         return clienteService.buscar(consultaBody);
     }

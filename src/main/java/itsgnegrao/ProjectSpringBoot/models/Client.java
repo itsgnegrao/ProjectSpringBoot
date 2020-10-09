@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "Client")
 public class Client implements Serializable {
 
@@ -33,6 +32,7 @@ public class Client implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date data_nasc;
 
+    @NotEmpty
     private String email;
 
     private char sexo;
@@ -44,6 +44,16 @@ public class Client implements Serializable {
     private Timestamp data_cad;
 
     private Timestamp data_alt;
+
+    public Client(@NotNull @NotEmpty String cpf, @NotNull @NotEmpty String nome, @NotNull Date data_nasc, String email) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.data_nasc = data_nasc;
+        this.email = email;
+    }
+
+    public Client() {
+    }
 
     public Long getId() {
         return id;

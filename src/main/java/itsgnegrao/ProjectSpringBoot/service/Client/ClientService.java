@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.sql.Array;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -27,15 +26,10 @@ public class ClientService {
     public ResponseEntity findById(Long id) {
         try {
             Optional<Client> cliente = clientRepository.findById(id);
-
-            if (!cliente.isPresent()) {
-                return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(false, "Cliente Não Encontrado")));
-            }
-
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseBody(true, "Success", cliente.get()));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson(new ResponseBody(false, "Fail")));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson(new ResponseBody(false, "Fail", "Cliente Não Encontrado")));
         }
     }
 
@@ -64,46 +58,20 @@ public class ClientService {
                     break;
                 default:
                     arr = clientRepository.findAll();
-                    ;
             }
 
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseBody(true, "Success", arr));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson(new ResponseBody(false, "Fail")));
-        }
-    }
-
-    public ResponseEntity novo(Client client) {
-        try {
-            //        Validação de Campos
-            ArrayList<String> resp = validateClienteFields(client);
-            if (!resp.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(false, "Fail", resp)));
-            }
-
-            client.setData_alt(new Timestamp(new Date().getTime()));
-            client.setData_cad(new Timestamp(new Date().getTime()));
-            try {
-                Client cliente = clientRepository.save(client);
-                return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(true, "Success", cliente)));
-            } catch (Exception e) {
-                e.printStackTrace();
-                return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(false, "Fail", new ArrayList<String>(Arrays.asList("Cliente Provavelmente Já Cadastrado!")))));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson(new ResponseBody(false, "Fail")));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(gson.toJson(new ResponseBody(false, "Fail")));
         }
     }
 
     public ResponseEntity deletar(Long id) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(clientRepository.findById(id)
-                    .map(record -> {
-                        clientRepository.deleteById(id);
-                        return new ResponseBody(true, "Success");
-                    }).orElse(new ResponseBody(false, "Fail")));
+            clientRepository.findById(id).get();
+            clientRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(true, "Success")));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson(new ResponseBody(false, "Fail")));
@@ -115,13 +83,13 @@ public class ClientService {
             Optional<Client> clienteOptional = clientRepository.findById(id);
 
             if (!clienteOptional.isPresent()) {
-                return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(false, "Cliente Não Encontrado")));
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(gson.toJson(new ResponseBody(false, "Cliente Não Encontrado")));
             }
 
             // Validação de Campos
             ArrayList<String> resp = validateClienteFields(client);
             if (!resp.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(false, "Fail", resp)));
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(gson.toJson(new ResponseBody(false, "Fail", resp)));
             }
 
             return ResponseEntity.status(HttpStatus.OK).body(clientRepository.findById(id)
@@ -146,6 +114,29 @@ public class ClientService {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson(new ResponseBody(false, "Fail")));
+        }
+    }
+
+    public ResponseEntity novo(Client client) {
+        try {
+            //        Validação de Campos
+            ArrayList<String> resp = validateClienteFields(client);
+            if (!resp.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(gson.toJson(new ResponseBody(false, "Fail", resp)));
+            }
+
+            client.setData_alt(new Timestamp(new Date().getTime()));
+            client.setData_cad(new Timestamp(new Date().getTime()));
+            try {
+                Client cliente = clientRepository.save(client);
+                return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(new ResponseBody(true, "Success", cliente)));
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(gson.toJson(new ResponseBody(false, "Fail", new ArrayList<String>(Arrays.asList("Cliente Provavelmente Já Cadastrado!")))));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(gson.toJson(new ResponseBody(false, "Fail")));
         }
     }
 

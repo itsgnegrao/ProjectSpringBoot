@@ -25,6 +25,14 @@ public class LoginResource {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity login(@RequestBody User user) {
+
+        if(user.getUsername() == null || user.getUsername() == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        else if(user.getPassword().equals("") || user.getUsername().equals("")){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
         String auth = user.getUsername() + ":" + user.getPassword();
         byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
         String tk = "Basic " + new String(encodedAuth);

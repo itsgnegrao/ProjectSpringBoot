@@ -10,10 +10,5 @@ class ProjectSpringBootApplicationTests {
 	void contextLoads() {
 	}
 
-	@Test
-	void case1() throws Exception {
-		System.out.println("ENTREI");
-	}
-
 
 }
