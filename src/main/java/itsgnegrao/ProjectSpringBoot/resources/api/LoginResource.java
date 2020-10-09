@@ -21,7 +21,7 @@ public class LoginResource {
     @Autowired
     private Gson gson;
 
-    @CrossOrigin(origins = API_URL)
+    @CrossOrigin(origins = "*")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity login(@RequestBody User user) {
