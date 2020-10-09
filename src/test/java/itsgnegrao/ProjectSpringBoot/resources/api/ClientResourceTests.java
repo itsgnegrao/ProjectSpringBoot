@@ -82,7 +82,7 @@ public class ClientResourceTests {
 //  Atualizar
     @Test
     public void atualizar_deveRetornarOk() throws Exception {
-        given().contentType(ContentType.JSON).accept(ContentType.JSON).body(new Client()).when().put ("/api/client/1").then().statusCode(HttpStatus.OK.value());
+        given().contentType(ContentType.JSON).accept(ContentType.JSON).body(new Client("08474392918", "teste", Date.valueOf("1996-12-10"), "testerson@teste.com")).when().put ("/api/client/1").then().statusCode(HttpStatus.OK.value());
     }
 
     @Test
